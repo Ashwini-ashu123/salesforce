@@ -48,6 +48,13 @@ public class Login extends testContext {
     By activef = By.xpath(objectProp.getObjectID("activef"));
     By manucomp = By.xpath(objectProp.getObjectID("manucomp"));
     By save = By.xpath(objectProp.getObjectID("save"));
+    By accName1 = By.xpath(objectProp.getObjectID("accName"));
+    By mailId = By.xpath(objectProp.getObjectID("mailId"));
+    By territory = By.xpath(objectProp.getObjectID("territory"));
+    By city1 =By.xpath(objectProp.getObjectID("city"));
+    By country1 = By.xpath(objectProp.getObjectID("country"));
+    By state1 = By.xpath(objectProp.getObjectID("state"));
+    By zip =By.xpath(objectProp.getObjectID("zip"));
 
 
 
@@ -203,4 +210,48 @@ public class Login extends testContext {
         driver.findElement(save).click();
         sleep(5000);
     }
+
+    public void openClinicalInfo(String clinicalInfo, String org) throws InterruptedException {
+        WebDriver driver = getDriver();
+        driver.findElement(By.xpath("//span[contains(text(),'" + clinicalInfo + "')]")).click();
+        System.out.println("clinical is Clciked");
+        sleep(5000);
+        WebElement element = driver.findElement(By.xpath("//*[contains(text(),'" + org +"')]"));
+        element.click();
+        if(element.isDisplayed()){
+            System.out.println("org page is displayed");
+        }
+        else{
+            System.out.println("org is not displayed");
+        }
+        sleep(2000);
+    }
+
+    public void fillOrgForm (String accName,String email, String terriroty,String city,String stateValue,String country,String zip1 ) throws InterruptedException {
+        WebDriver driver = getDriver();
+        driver.findElement(accName1).sendKeys(accName);
+        sleep(2000);
+        driver.findElement(mailId).sendKeys(email);
+        sleep(2000);
+        WebElement terr = driver.findElement(territory);
+        terr.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement dropdownOption = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("//span[contains(text(),'" + terriroty + "')]")));
+        dropdownOption.click();
+        driver.findElement(city1).sendKeys(city);
+        sleep(1000);
+        driver.findElement(country1).sendKeys(country);
+        sleep(1000);
+        driver.findElement(zip).sendKeys(zip1);
+        sleep(3000);
+        WebElement sField = driver.findElement(state1);
+        sField.sendKeys(stateValue);
+        sleep(5000);
+        WebElement sDropdown = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//strong[text()='" + stateValue + "']")));
+        sDropdown.click();
+        sleep(5000);
+    }
+
 }
