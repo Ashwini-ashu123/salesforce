@@ -137,4 +137,33 @@ public class MyStepdefs extends testContext {
         }
 
     }
+
+    @And("user click on the {string} from the tab and verify user  in {string} page")
+    public void userClickOnTheClinicalInfoFromTheTabAndVerifyUserInOrganisationPage(String clinical,String org) throws InterruptedException {
+        login.openClinicalInfo(clinical,org);
+
+    }
+
+    @And("user Click on the{string} button and upload the form with {string}")
+    public void userClickOnTheNewButtonAndUploadTheFormWithOrgCsv(String newButton, String filepath) throws InterruptedException {
+
+
+        String filename = "src/test/resource/testdata/" +filepath ;
+
+        List<Map<String,String>> orgAddOn = readCSV(filename);
+
+        for(Map<String,String> row : orgAddOn){
+            login.addNew(newButton);
+            String AccName = row.get("Account Name");
+            String Email = row.get("Hospital Email ID");
+            String territory = row.get("Territory");
+            String city = row.get("City");
+            String state = row.get("State");
+            String country = row.get("Country");
+            String zip = row.get("Zip/Postal code");
+            login.fillOrgForm(AccName,Email,territory,city,state,country,zip);
+            login.saveform();
+            System.out.println("AccName is inserted" +AccName);
+        }
+    }
 }
