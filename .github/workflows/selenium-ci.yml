@@ -29,6 +29,3 @@ jobs:
 
       - name: Run tests using Maven
         run: mvn clean test
-  git checkout main
-  git merge ashuSFTest
-  git push origin main
