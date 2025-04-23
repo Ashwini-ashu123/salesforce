@@ -52,8 +52,10 @@ Feature: Login feature
       And user click on the login button
       And Click on the app Launcher and open the Torrent pharama
       And Verify the Home page of Torrent pharam is displayed
-      And user click on the 'Clinical Info' from the tab and verify user  in 'Organisation' page
-      And user Click on the'New' button and upload the form with 'org.csv'
+#      And user click on the 'Clinical Info' from the tab and verify user  in 'Organisation' page
+#      And user Click on the'New' button and upload the form with 'org.csv'
+      And user click on the 'Clinical Info' from the tab and verify user  in 'Doctor' page
+      And user Click on the 'New' button and upload the form with 'Doctor.csv'
 
 
 
