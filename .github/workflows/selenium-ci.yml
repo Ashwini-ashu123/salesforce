@@ -2,7 +2,7 @@ name: Selenium Automation CI
 
 on:
   push:
-    branches: [ main ] # Or the branch you're working with
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -29,3 +29,6 @@ jobs:
 
       - name: Run tests using Maven
         run: mvn clean test
+  git checkout main
+  git merge ashuSFTest
+  git push origin main
