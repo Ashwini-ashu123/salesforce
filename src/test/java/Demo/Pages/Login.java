@@ -55,6 +55,15 @@ public class Login extends testContext {
     By country1 = By.xpath(objectProp.getObjectID("country"));
     By state1 = By.xpath(objectProp.getObjectID("state"));
     By zip =By.xpath(objectProp.getObjectID("zip"));
+    By docNamef = By.xpath(objectProp.getObjectID("docName"));
+    By ratings = By.xpath(objectProp.getObjectID("ratings"));
+    By docCity  = By.xpath(objectProp.getObjectID("docCity"));
+    By phonef = By.xpath(objectProp.getObjectID("phone"));
+    By docCountry = By.xpath(objectProp.getObjectID("docCountry"));
+    By docZip = By.xpath(objectProp.getObjectID("docZip"));
+    By accTypeF = By.xpath(objectProp.getObjectID("accTypeF"));
+    By specialF = By.xpath(objectProp.getObjectID("specialF"));
+
 
 
 
@@ -170,6 +179,13 @@ public class Login extends testContext {
         System.out.println("New button is clicked");
     }
 
+    public void addNew2(String newbutton) throws InterruptedException {
+        WebDriver driver = getDriver();
+        driver.findElement(By.xpath("(//button[text()='" + newbutton + "'])[2]")).click();
+        sleep(5000);
+        System.out.println("New2  button is clicked");
+    }
+
 
     public void addProdFom(String prodName, String ThearpName, String prodForm, String dosage, Boolean active, String manComp) throws InterruptedException {
         WebDriver driver = getDriver();
@@ -252,6 +268,22 @@ public class Login extends testContext {
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//strong[text()='" + stateValue + "']")));
         sDropdown.click();
         sleep(5000);
+    }
+
+    public void docFillForm (String docName,String rating,String phone ,String accType,String hospital,String special,String city,String country,String state,String zip) throws InterruptedException {
+        WebDriver driver = getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        driver.findElement(docNamef).sendKeys(docName);
+        sleep(2000);
+        driver.findElement(ratings).sendKeys(rating);
+        sleep(2000);
+        driver.findElement(phonef).sendKeys(phone);
+        sleep(2000);
+        driver.findElement(accTypeF).click();
+        WebElement accDropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'" + accType + "')]")));
+        accDropDown.click();
+        sleep(2000);
+
     }
 
 }

@@ -166,4 +166,28 @@ public class MyStepdefs extends testContext {
             System.out.println("AccName is inserted" +AccName);
         }
     }
+
+    @And("user Click on the {string} button and upload the form with {string}")
+    public void userClickOnTheNewButtonAndUploadTheFormWithDoctorCsv(String newbutton, String filepath) throws InterruptedException {
+
+        String filename = "src/test/resource/testdata/"  +filepath;
+
+        List<Map<String,String>> docAddOn = readCSV(filename);
+
+        for(Map<String,String> row : docAddOn){
+            login.addNew2(newbutton);
+            String DocName = row.get("Account Name");
+            String rating = row.get("Professional Rating");
+            String phone = row.get("Phone");
+            String accType = row.get("Account Type");
+            String hospital = row.get("Primary Hospital");
+            String special = row.get("Speciality");
+            String city = row.get("City");
+            String state = row.get("State");
+            String country = row.get("Country");
+            String Zip = row.get("Zip/Postal Code");
+            login.docFillForm(DocName,rating,phone,accType,hospital,special,city,state,country,Zip);
+        }
+
+    }
 }
