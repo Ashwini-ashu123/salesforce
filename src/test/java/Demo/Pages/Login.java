@@ -63,6 +63,7 @@ public class Login extends testContext {
     By docZip = By.xpath(objectProp.getObjectID("docZip"));
     By accTypeF = By.xpath(objectProp.getObjectID("accTypeF"));
     By specialF = By.xpath(objectProp.getObjectID("specialF"));
+    By Hospital = By.xpath(objectProp.getObjectID("Hospital"));
 
 
 
@@ -270,7 +271,7 @@ public class Login extends testContext {
         sleep(5000);
     }
 
-    public void docFillForm (String docName,String rating,String phone ,String accType,String hospital,String special,String city,String country,String state,String zip) throws InterruptedException {
+    public void docFillForm (String docName,String rating,String phone ,String accType,String hospital,String special,String city, String state12 ,String country,String zip) throws InterruptedException {
         WebDriver driver = getDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.findElement(docNamef).sendKeys(docName);
@@ -282,6 +283,28 @@ public class Login extends testContext {
         driver.findElement(accTypeF).click();
         WebElement accDropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'" + accType + "')]")));
         accDropDown.click();
+        sleep(2000);
+        driver.findElement(Hospital).sendKeys(hospital);
+        WebElement hosDD = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//strong[contains(text(),'" + hospital + "')]")));
+        sleep(2000);
+        hosDD.click();
+        sleep(2000);
+        driver.findElement(specialF).click();
+        WebElement specialDD = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'" + special + "')]")));
+        specialDD.click();
+        sleep(2000);
+        driver.findElement(docCity).sendKeys(city);
+        sleep(2000);
+        WebElement sField = driver.findElement(state1);
+        sField.sendKeys(state12);
+        sleep(2000);
+        WebElement sDropdown = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//strong[text()='" + state12 + "']")));
+        sDropdown.click();
+        sleep(2000);
+        driver.findElement(docCountry).sendKeys(country);
+        sleep(2000);
+        driver.findElement(docZip).sendKeys(zip);
         sleep(2000);
 
     }

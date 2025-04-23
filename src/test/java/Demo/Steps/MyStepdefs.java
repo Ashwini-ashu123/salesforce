@@ -187,6 +187,10 @@ public class MyStepdefs extends testContext {
             String country = row.get("Country");
             String Zip = row.get("Zip/Postal Code");
             login.docFillForm(DocName,rating,phone,accType,hospital,special,city,state,country,Zip);
+
+            login.saveform();
+
+            System.out.println("Doctor inserted " +DocName);
         }
 
     }

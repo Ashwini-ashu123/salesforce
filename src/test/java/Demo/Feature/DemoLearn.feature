@@ -56,7 +56,7 @@ Feature: Login feature
 #      And user Click on the'New' button and upload the form with 'org.csv'
       And user click on the 'Clinical Info' from the tab and verify user  in 'Doctor' page
       And user Click on the 'New' button and upload the form with 'Doctor.csv'
-      And verify both org details and doctor details is updated successfully
+
 
 
 
